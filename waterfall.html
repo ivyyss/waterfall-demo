@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>waterfull瀑布流布局</title>
+    <script src="https://code.jquery.com/jquery-2.0.3.js"></script>
+</head>
+<style>
+.waterfall{
+    max-width: 600px;
+    margin: 0 auto;
+}
+.waterfall img{
+    width: 100px;
+    margin: 5px;
+    position: absolute;
+}
+</style>
+<body>
+    <div class="waterfall">
+        <img src="http://via.placeholder.com/100x100" alt="100*100">
+        <img src="http://via.placeholder.com/100x120" alt="100*120">
+        <img src="http://via.placeholder.com/100x150" alt="100*150">
+        <img src="http://via.placeholder.com/100x80" alt="100*80">
+        <img src="http://via.placeholder.com/100x110" alt="100*110">
+        <img src="http://via.placeholder.com/100x100" alt="100*100">
+        <img src="http://via.placeholder.com/100x90" alt="100*90">
+        <img src="http://via.placeholder.com/100x130" alt="100*130">
+        <img src="http://via.placeholder.com/100x150" alt="100*150">
+        <img src="http://via.placeholder.com/100x120" alt="100*120">
+        <img src="http://via.placeholder.com/100x100" alt="100*100">
+        <img src="http://via.placeholder.com/100x90" alt="100*90">
+        <img src="http://via.placeholder.com/100x110" alt="100*110">
+        <img src="http://via.placeholder.com/100x170" alt="100*170">
+        <img src="http://via.placeholder.com/100x120" alt="100*120">
+        <img src="http://via.placeholder.com/100x120" alt="100*120">
+        <img src="http://via.placeholder.com/100x130" alt="100*130">
+        <img src="http://via.placeholder.com/100x100" alt="100*100">
+    </div>
+    <script>
+        var imgWidth = $('.waterfall img').outerWidth(true)
+        var colCount = Math.floor($('.waterfall').width()/imgWidth)
+        // console.log(colCount) 
+
+        var colHeightArray=[]
+        for(var i=0;i<colCount;i++){
+        colHeightArray[i]=0 
+        }
+        // console.log(colHeightArray)
+
+        $('.waterfall img').on('load',function(){
+        
+            var minValue = colHeightArray[0]
+            var minIndex = 0
+
+            for(var i=0;i<colCount;i++){
+                if(colHeightArray[i]<minValue){
+                minValue = colHeightArray[i]
+                minIndex = i
+                // console.log(minValue)
+                // console.log(minIndex)
+            }
+            }
+            
+            $(this).css({
+                left:minIndex * imgWidth,
+                top: minValue
+            })
+            
+            colHeightArray[minIndex]+=$(this).outerHeight(true)
+            
+        })
+    </script>
+</body>
+</html>
