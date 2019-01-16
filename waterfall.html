@@ -42,13 +42,13 @@
     <script>
         var imgWidth = $('.waterfall img').outerWidth(true)
         var colCount = Math.floor($('.waterfall').width()/imgWidth)
-        // console.log(colCount) 
+        // console.log(colCount) 计算列数
 
         var colHeightArray=[]
         for(var i=0;i<colCount;i++){
         colHeightArray[i]=0 
         }
-        // console.log(colHeightArray)
+        // console.log(colHeightArray) 初始化列高数组【0，0，0】
 
         $('.waterfall img').on('load',function(){
         
@@ -60,7 +60,7 @@
                 minValue = colHeightArray[i]
                 minIndex = i
                 // console.log(minValue)
-                // console.log(minIndex)
+                // console.log(minIndex) 记录最小的行高和对应的index
             }
             }
             
